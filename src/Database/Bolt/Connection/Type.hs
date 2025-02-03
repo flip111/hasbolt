@@ -1,9 +1,14 @@
+{-# OPTIONS_GHC -Wno-partial-fields #-}
+
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE RoleAnnotations #-}
 
 module Database.Bolt.Connection.Type where
+
+import           Prelude
 
 import           Database.Bolt.Value.Type hiding (unpack)
 
@@ -60,6 +65,8 @@ instance Exception BoltError
 -- |Monad Transformer to do all BOLT actions in
 newtype BoltActionT m a = BoltActionT { runBoltActionT :: ReaderT Pipe (ExceptT BoltError m) a }
   deriving (Functor, Applicative, Monad, MonadError BoltError, MonadReader Pipe)
+
+type role BoltActionT representational nominal
 
 instance MonadTrans BoltActionT where
   lift = BoltActionT . lift . lift

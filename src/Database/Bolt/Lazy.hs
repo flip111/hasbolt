@@ -11,5 +11,7 @@ module Database.Bolt.Lazy
     , Node (..), Relationship (..), URelationship (..), Path (..)
     ) where
 
+import           Prelude
+
 import           Database.Bolt.Connection
 import           Database.Bolt hiding (query, queryP)

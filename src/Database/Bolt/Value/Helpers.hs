@@ -1,5 +1,7 @@
 module Database.Bolt.Value.Helpers where
 
+import           Prelude
+
 import           Control.Applicative (liftA2, liftA3, pure)
 import           Data.Bits           ((.&.))
 import           Data.Word           (Word8, Word32)
@@ -228,4 +230,4 @@ inRange :: Ord a => (a, a) -> a -> Bool
 inRange (low, up) x = low <= x && x < up
 
 isIntX :: Integral x => x -> x -> Bool
-isIntX p = inRange (-2^(p-1), 2^(p-1) - 1)
+isIntX p = inRange (-2 ^ (p-1), 2 ^ (p-1) - 1)

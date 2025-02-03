@@ -1,7 +1,10 @@
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE RecordWildCards #-}
+
 module Database.Bolt.Connection.Pipe where
+
+import Prelude
 
 import qualified Database.Bolt.Connection.Connection as C (close, connect, recv, send, sendMany)
 import           Database.Bolt.Connection.Instances
@@ -54,7 +57,7 @@ reset = makeIO reset'
                        throwError ResetFailed
 
 -- Helper to make pipe operations in IO
-makeIO :: MonadIO m => HasCallStack => (a -> ExceptT BoltError m b) -> a -> m b
+makeIO :: MonadIO m => (a -> ExceptT BoltError m b) -> a -> m b
 makeIO action arg = do actionIO <- runExceptT (action arg)
                        case actionIO of
                          Right x -> pure x

@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
+
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -13,6 +15,8 @@ module Database.Bolt.Connection
 
   , sendRawRequest
   ) where
+
+import           Prelude
 
 import           Database.Bolt.Connection.Pipe
 import           Database.Bolt.Connection.Instances
@@ -33,11 +37,11 @@ import           GHC.Stack                     (HasCallStack)
 import           System.IO.Unsafe              (unsafeInterleaveIO)
 
 -- |Runs BOLT action on selected pipe
-runE :: MonadIO m => HasCallStack => Pipe -> BoltActionT m a -> m (Either BoltError a)
+runE :: Pipe -> BoltActionT m a -> m (Either BoltError a)
 runE pipe action = runExceptT (runReaderT (runBoltActionT action) pipe)
 
 -- |Runs BOLT action on selected pipe (with errors throw)
-run :: MonadIO m => HasCallStack => Pipe -> BoltActionT m a -> m a
+run :: MonadIO m => Pipe -> BoltActionT m a -> m a
 run pipe action = do result <- runE pipe action
                      case result of
                        Right x -> pure x

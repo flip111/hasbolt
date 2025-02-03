@@ -1,9 +1,13 @@
 {-# OPTIONS_GHC -fno-warn-orphans #-}
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
+
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE RecordWildCards #-}
 
 module Database.Bolt.Connection.Instances where
+
+import           Prelude
 
 import           Database.Bolt.Connection.Type
 import           Database.Bolt.Value.Helpers

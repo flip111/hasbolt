@@ -11,6 +11,8 @@ module Database.Bolt
     , maybeAt, Node (..), Relationship (..), URelationship (..), Path (..)
     ) where
 
+import           Prelude
+
 import           Database.Bolt.Connection hiding (query, queryP)
 import           Database.Bolt.Connection.Pipe
 import           Database.Bolt.Connection.Type

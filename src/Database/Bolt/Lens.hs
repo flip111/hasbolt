@@ -7,6 +7,8 @@ module Database.Bolt.Lens
   )
 where
 
+import           Prelude
+
 import           Data.Functor.Contravariant (Contravariant (..))
 import           Data.Map.Strict            (Map)
 import qualified Data.Map.Strict            as M

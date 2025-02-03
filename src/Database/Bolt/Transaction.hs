@@ -1,7 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 module Database.Bolt.Transaction
   ( transact
   ) where
+
+import           Prelude
 
 import           Control.Monad                  ( void )
 import           Control.Monad.Reader           ( ask )
